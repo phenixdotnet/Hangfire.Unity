@@ -36,6 +36,7 @@ Icon
 .Spotlight-V100
 .Trashes
 *.suo
+*.nupkg
 /packages
 /src/Hangfire.Unity/bin
 /src/Hangfire.Unity/obj
