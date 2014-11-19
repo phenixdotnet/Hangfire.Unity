@@ -12,13 +12,13 @@ namespace Hangfire.Unity
     /// </summary>
     public class UnityJobActivator : JobActivator
     {
-        private readonly UnityContainer container;
+        private readonly IUnityContainer container;
 
         /// <summary>
         /// Initialize a new instance of the <see cref="T:UnityJobActivator"/> class
         /// </summary>
         /// <param name="container">The unity container to be used</param>
-        public UnityJobActivator(UnityContainer container)
+        public UnityJobActivator(IUnityContainer container)
         {
             if (container == null)
                 throw new ArgumentNullException("container");
