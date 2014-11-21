@@ -19,7 +19,7 @@ namespace Hangfire
         /// </summary>
         /// <param name="configuration">Configuration</param>
         /// <param name="container">The unity container that will be used to activate jobs</param>
-        public static void UseUnityActivator(this IBootstrapperConfiguration configuration, UnityContainer container)
+        public static void UseUnityActivator(this IBootstrapperConfiguration configuration, IUnityContainer container)
         {
             configuration.UseActivator(new UnityJobActivator(container));
         }
