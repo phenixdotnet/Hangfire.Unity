@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Hangfire.Unity</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>Hangfire Unity Job activator</title>
     <authors>Vincent Lainé</authors>
     <owners>phenixdotnet</owners>
@@ -10,12 +10,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://raw.github.com/HangfireIO/Hangfire/master/LICENSE.md</licenseUrl>
     <description>$description$</description>
-    <copyright>Copyright © 2014-2014 Vincent Lainé</copyright>
+    <copyright>Copyright © 2014-2015 Vincent Lainé</copyright>
     <tags>Hangfire Unity IoC</tags>
     <releaseNotes>https://github.com/HangfireIO/Hangfire/releases</releaseNotes>
     <dependencies>
-      <dependency id="Hangfire.Core" version="1.1.0" />
-      <dependency id="Unity" version="3.5.1404.0" />
+      <dependency id="Hangfire.Core" version="1.5.3" />
+      <dependency id="Unity" version="4.0.1" />
     </dependencies>
   </metadata>
   <files>
