@@ -1,5 +1,4 @@
-﻿using Hangfire.Unity;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +18,7 @@ namespace Hangfire
         /// </summary>
         /// <param name="configuration">Configuration</param>
         /// <param name="container">The unity container that will be used to activate jobs</param>
+        [Obsolete("Please use `GlobalConfiguration.Configuration.UseUnityActivator` method instead. Will be removed in version 2.0.0.")]
         public static void UseUnityActivator(this IBootstrapperConfiguration configuration, IUnityContainer container)
         {
             configuration.UseActivator(new UnityJobActivator(container));
