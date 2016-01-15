@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hangfire.Unity
+namespace Hangfire
 {
     /// <summary>
     /// A job activator which use unity to create job instance

@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalConfigurationExtensions.cs" />
     <Compile Include="UnityBootstrapperConfigurationExtensions.cs" />
     <Compile Include="UnityJobActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
