@@ -29,8 +29,32 @@ namespace Hangfire
         /// <inheritdoc />
         public override object ActivateJob(Type jobType)
         {
-            
             return this.container.Resolve(jobType);
+        }
+
+        public override JobActivatorScope BeginScope()
+        {
+            return new UnityScope(container.CreateChildContainer());
+        }
+
+        class UnityScope : JobActivatorScope
+        {
+            private readonly IUnityContainer container;
+
+            public UnityScope(IUnityContainer container)
+            {
+                this.container = container;
+            }
+
+            public override object Resolve(Type type)
+            {
+                return container.Resolve(type);
+            }
+
+            public override void DisposeScope()
+            {
+                container.Dispose();
+            }
         }
     }
 }
