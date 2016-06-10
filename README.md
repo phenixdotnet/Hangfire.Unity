@@ -7,7 +7,7 @@ This project is based on the [Hangfire.Ninject](https://github.com/HangfireIO/Ha
 [Unity](https://unity.codeplex.com/) IoC Container. It allows you to use instance
 methods of classes that define parametrized constructors:
 
-Thanks to [https://github.com/mwillebrands]mwillebrands for update and unit tests
+Thanks to mwillebrands for update and unit tests
 
 ```csharp
 public class EmailService
