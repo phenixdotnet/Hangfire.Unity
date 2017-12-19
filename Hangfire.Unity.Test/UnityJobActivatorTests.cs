@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using Hangfire.Annotations;
+using Hangfire.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Practices.Unity;
-
+using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 
 namespace Hangfire.Unity.Test
 {
@@ -9,7 +13,6 @@ namespace Hangfire.Unity.Test
     public class UnityJobActivatorTests
     {
         private IUnityContainer container;
-
         public UnityJobActivatorTests()
         {
             container = new UnityContainer();
@@ -40,13 +43,13 @@ namespace Hangfire.Unity.Test
             var activator = CreateActivator();
 
             object instance1;
-            using (var scope1 = activator.BeginScope())
+            using (var scope1 = new  SimpleJobActivatorScope(activator))
             {
                 instance1 = scope1.Resolve(typeof(object));
             }
 
             object instance2;
-            using (var scope2 = activator.BeginScope())
+            using (var scope2 = new  SimpleJobActivatorScope(activator))
             {
                 instance2 = scope2.Resolve(typeof(object));
             }
@@ -66,13 +69,13 @@ namespace Hangfire.Unity.Test
             var activator = CreateActivator();
 
             object instance1;
-            using (var scope1 = activator.BeginScope())
+            using (var scope1 = new  SimpleJobActivatorScope(activator))
             {
                 instance1 = scope1.Resolve(typeof(object));
             }
 
             object instance2;
-            using (var scope2 = activator.BeginScope())
+            using (var scope2 = new  SimpleJobActivatorScope(activator))
             {
                 instance2 = scope2.Resolve(typeof(object));
             }
@@ -89,7 +92,7 @@ namespace Hangfire.Unity.Test
 
             var activator = CreateActivator();
 
-            using (var scope = activator.BeginScope())
+            using (var scope = new  SimpleJobActivatorScope(activator))
             {
                 var instance1 = scope.Resolve(typeof(object));
                 var instance2 = scope.Resolve(typeof(object));
@@ -108,13 +111,13 @@ namespace Hangfire.Unity.Test
             var activator = CreateActivator();
 
             object instance1;
-            using (var scope1 = activator.BeginScope())
+            using (var scope1 =new  SimpleJobActivatorScope(activator))
             {
                 instance1 = scope1.Resolve(typeof(object));
             }
 
             object instance2;
-            using (var scope2 = activator.BeginScope())
+            using (var scope2 = new  SimpleJobActivatorScope(activator))
             {
                 instance2 = scope2.Resolve(typeof(object));
             }
@@ -137,7 +140,38 @@ namespace Hangfire.Unity.Test
                 Disposed = true;
             }
         }
+        class SimpleJobActivatorScope : JobActivatorScope
+        {
+            private readonly JobActivator _activator;
+            private readonly List<IDisposable> _disposables = new List<IDisposable>();
 
+            public SimpleJobActivatorScope([NotNull] JobActivator activator)
+            {
+                if (activator == null) throw new ArgumentNullException(nameof(activator));
+                _activator = activator;
+            }
+
+            public override object Resolve(Type type)
+            {
+                var instance = _activator.ActivateJob(type);
+                var disposable = instance as IDisposable;
+
+                if (disposable != null)
+                {
+                    _disposables.Add(disposable);
+                }
+
+                return instance;
+            }
+
+            public override void DisposeScope()
+            {
+                foreach (var disposable in _disposables)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
 
     }
 }
