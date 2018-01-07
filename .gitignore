@@ -42,3 +42,4 @@ Icon
 /src/Hangfire.Unity/obj
 /Hangfire.Unity.Test/bin
 /Hangfire.Unity.Test/obj
+/.vs/Hangfire.Unity/v15/Server/sqlite3

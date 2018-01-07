@@ -1,9 +1,5 @@
-﻿using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Unity;
 
 namespace Hangfire
 {
@@ -31,12 +27,10 @@ namespace Hangfire
         {
             return this.container.Resolve(jobType);
         }
-
-        public override JobActivatorScope BeginScope()
+        public override JobActivatorScope BeginScope(JobActivatorContext context)
         {
             return new UnityScope(container.CreateChildContainer());
         }
-
         class UnityScope : JobActivatorScope
         {
             private readonly IUnityContainer container;
