@@ -66,3 +66,13 @@ In order to use the library outside of web application, set the static `JobActiv
 var container = new UnityContainer();
 JobActivator.Current = new UnityJobActivator(container);
 ```
+
+
+Thanks to all contributors
+------
+(in no special order):
+- indiaweblab
+- NiSHoW 
+- mwillebrands
+- victor-ponce 
+- xavero
