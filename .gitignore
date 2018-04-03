@@ -38,8 +38,6 @@ Icon
 *.suo
 *.nupkg
 /packages
-/src/Hangfire.Unity/bin
-/src/Hangfire.Unity/obj
-/Hangfire.Unity.Test/bin
-/Hangfire.Unity.Test/obj
-/.vs/Hangfire.Unity/v15/Server/sqlite3
+/**/bin
+/**/obj
+/.vs/
